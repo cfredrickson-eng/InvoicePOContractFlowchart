@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Invoice &amp; PO Approval Routing — APT Residential</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#fff;color:#1a1a1a;font-size:14px}
+.page{max-width:960px;margin:0 auto;padding:28px 24px}
+h1{font-size:20px;font-weight:700;color:#1F4E79;margin-bottom:4px}
+.subtitle{font-size:12px;color:#777;margin-bottom:18px}
+.key-box{background:#FEF9E7;border:1.5px solid #F39C12;border-radius:8px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#5D4037;line-height:1.6}
+.key-box strong{color:#B7770D;font-weight:700}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tab{padding:7px 16px;border:1px solid #C8D8EC;border-radius:20px;background:#F0F5FB;color:#1F4E79;cursor:pointer;font-size:12px;font-weight:700;font-family:Arial,sans-serif;transition:background .15s}
+.tab.active,.tab:hover{background:#1F4E79;color:#fff;border-color:#1F4E79}
+.panel{display:none}
+.panel.active{display:block}
+.panel-label{font-size:13px;font-weight:700;color:#1F4E79;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #D6E4F0}
+svg{width:100%;display:block}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid #E8E8E8;font-size:11px;color:#555}
+.ld{display:flex;align-items:center;gap:6px}
+.lc{width:14px;height:14px;border-radius:3px;flex-shrink:0}
+@media print{
+  .tabs,.key-box{display:none}
+  .panel{display:block!important;page-break-after:always}
+  body{font-size:11px}
+  .panel-label{border-bottom:2px solid #1F4E79}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Invoice &amp; Purchase Order Approval Routing</h1>
+
+<div class="key-box">
+  <strong>Sequential Approval — Non-Negotiable:</strong> Every invoice and purchase order must be reviewed and approved by <em>each role in the chain</em> before advancing to the next tier. No invoice or PO routes directly to the role with final approval authority. Every level signs off in order. Additionally, budget variance thresholds apply at each approver level — if the invoice amount exceeds budget by more than the role's variance limit, it must escalate to the next level regardless of the invoice's total dollar amount.
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('rm',this)">R&amp;M / Contract / Turnover</button>
+  <button class="tab" onclick="showTab('admin',this)">Admin / Labor / Marketing</button>
+  <button class="tab" onclick="showTab('capex',this)">CapEx Invoices</button>
+  <button class="tab" onclick="showTab('po',this)">Purchase Orders</button>
+  <button class="tab" onclick="showTab('contract',this)">Contracts</button>
+</div>
+
+<!-- ═══════════════ R&M ═══════════════ -->
+<div id="rm" class="panel active">
+<div class="panel-label">R&amp;M, Contract Services &amp; Turnover Invoices — Sequential Approval with Variance Thresholds</div>
+<svg viewBox="0 0 680 676">
+<defs><marker id="ar1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<!-- START -->
+<rect x="180" y="10" width="210" height="36" rx="18" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="285" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">Invoice submitted</text>
+<line x1="285" y1="46" x2="285" y2="60" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+
+<!-- STEP 1: SOM -->
+<rect x="100" y="60" width="370" height="80" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="285" y="79" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 1 — SOM: Review &amp; Approve</text>
+<text x="285" y="97" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $2,000</text>
+<text x="285" y="113" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Budget variance limit: $1,000 above the budgeted line item</text>
+<text x="285" y="129" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">Escalate if invoice amount OR variance exceeds either limit</text>
+<line x1="285" y1="140" x2="285" y2="156" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+
+<!-- DECISION 1 -->
+<polygon points="285,156 365,180 285,204 205,180" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="285" y="180" text-anchor="middle" font-size="11" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">SOM authority met?</text>
+<line x1="365" y1="180" x2="390" y2="180" stroke="#27500A" stroke-width="1.2" marker-end="url(#ar1)"/>
+<text x="377" y="172" text-anchor="middle" font-size="10" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes</text>
+<rect x="390" y="162" width="272" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.8"/>
+<text x="526" y="180" text-anchor="middle" font-size="11" font-weight="700" fill="#173404" font-family="Arial,sans-serif" dominant-baseline="central">AP Manager → Approved for Payment</text>
+<line x1="285" y1="204" x2="285" y2="220" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+<text x="298" y="215" font-size="10" fill="#666" font-family="Arial,sans-serif">No / exceeds threshold ↓</text>
+
+<!-- STEP 2: PSM -->
+<rect x="100" y="220" width="370" height="80" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="285" y="239" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 2 — PSM: Review &amp; Approve</text>
+<text x="285" y="257" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $5,000</text>
+<text x="285" y="273" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Budget variance limit: $1,500 above the budgeted line item</text>
+<text x="285" y="289" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">Escalate if invoice amount OR variance exceeds either limit</text>
+<line x1="285" y1="300" x2="285" y2="316" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+
+<!-- DECISION 2 -->
+<polygon points="285,316 365,340 285,364 205,340" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="285" y="340" text-anchor="middle" font-size="11" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">PSM authority met?</text>
+<line x1="365" y1="340" x2="390" y2="340" stroke="#27500A" stroke-width="1.2" marker-end="url(#ar1)"/>
+<text x="377" y="332" text-anchor="middle" font-size="10" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes</text>
+<rect x="390" y="322" width="272" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.8"/>
+<text x="526" y="340" text-anchor="middle" font-size="11" font-weight="700" fill="#173404" font-family="Arial,sans-serif" dominant-baseline="central">AP Manager → Approved for Payment</text>
+<line x1="285" y1="364" x2="285" y2="380" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+<text x="298" y="375" font-size="10" fill="#666" font-family="Arial,sans-serif">No / exceeds threshold ↓</text>
+
+<!-- STEP 3: RM -->
+<rect x="100" y="380" width="370" height="80" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="285" y="399" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 3 — RM: Review &amp; Approve</text>
+<text x="285" y="417" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $7,500</text>
+<text x="285" y="433" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Budget variance limit: $1,500 above the budgeted line item</text>
+<text x="285" y="449" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">Escalate if invoice amount OR variance exceeds either limit</text>
+<line x1="285" y1="460" x2="285" y2="476" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+
+<!-- DECISION 3 -->
+<polygon points="285,476 365,500 285,524 205,500" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="285" y="500" text-anchor="middle" font-size="11" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">RM authority met?</text>
+<line x1="365" y1="500" x2="390" y2="500" stroke="#27500A" stroke-width="1.2" marker-end="url(#ar1)"/>
+<text x="377" y="492" text-anchor="middle" font-size="10" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes</text>
+<rect x="390" y="482" width="272" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.8"/>
+<text x="526" y="500" text-anchor="middle" font-size="11" font-weight="700" fill="#173404" font-family="Arial,sans-serif" dominant-baseline="central">AP Manager → Approved for Payment</text>
+<line x1="285" y1="524" x2="285" y2="540" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+<text x="298" y="535" font-size="10" fill="#666" font-family="Arial,sans-serif">No / exceeds $7,500 or variance ↓</text>
+
+<!-- STEP 4: AP MANAGER (full escalation path) -->
+<rect x="100" y="540" width="370" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.2"/>
+<text x="285" y="562" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C" font-family="Arial,sans-serif" dominant-baseline="central">Step 4 — AP Manager: Review &amp; Code</text>
+<line x1="285" y1="584" x2="285" y2="600" stroke="#888780" stroke-width="1.2" marker-end="url(#ar1)"/>
+
+<!-- STEP 5: EXEC -->
+<rect x="100" y="600" width="370" height="50" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.2"/>
+<text x="285" y="620" text-anchor="middle" font-size="13" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif">Step 5 — Exec: Final Approval</text>
+<text x="285" y="638" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Arial,sans-serif">No dollar threshold — required for all invoices that exceed RM authority</text>
+</svg>
+</div>
+
+<!-- ═══════════════ ADMIN ═══════════════ -->
+<div id="admin" class="panel">
+<div class="panel-label">Admin, Contract Labor &amp; Marketing Invoices — Sequential Approval with Variance Thresholds</div>
+<svg viewBox="0 0 680 500">
+<defs><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<rect x="180" y="10" width="210" height="36" rx="18" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="285" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">Invoice submitted</text>
+<text x="285" y="54" text-anchor="middle" font-size="11" fill="#888780" font-family="Arial,sans-serif" font-style="italic">Note: SOM is not in the approval chain for this category — PSM is first reviewer</text>
+<line x1="285" y1="64" x2="285" y2="78" stroke="#888780" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<!-- STEP 1: PSM -->
+<rect x="100" y="78" width="370" height="80" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="285" y="97" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 1 — PSM: Review &amp; Approve</text>
+<text x="285" y="115" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $5,000</text>
+<text x="285" y="131" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Budget variance limit: $1,500 above the budgeted line item</text>
+<text x="285" y="147" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">Escalate if invoice amount OR variance exceeds either limit</text>
+<line x1="285" y1="158" x2="285" y2="174" stroke="#888780" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<!-- DECISION 1 -->
+<polygon points="285,174 365,198 285,222 205,198" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="285" y="198" text-anchor="middle" font-size="11" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">PSM authority met?</text>
+<line x1="365" y1="198" x2="390" y2="198" stroke="#27500A" stroke-width="1.2" marker-end="url(#ar2)"/>
+<text x="377" y="190" text-anchor="middle" font-size="10" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes</text>
+<rect x="390" y="180" width="272" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.8"/>
+<text x="526" y="198" text-anchor="middle" font-size="11" font-weight="700" fill="#173404" font-family="Arial,sans-serif" dominant-baseline="central">AP Manager → Approved for Payment</text>
+<line x1="285" y1="222" x2="285" y2="238" stroke="#888780" stroke-width="1.2" marker-end="url(#ar2)"/>
+<text x="298" y="233" font-size="10" fill="#666" font-family="Arial,sans-serif">No / exceeds threshold ↓</text>
+
+<!-- STEP 2: RM -->
+<rect x="100" y="238" width="370" height="80" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="285" y="257" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 2 — RM: Review &amp; Approve</text>
+<text x="285" y="275" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $7,500</text>
+<text x="285" y="291" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Budget variance limit: $1,500 above the budgeted line item</text>
+<text x="285" y="307" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">Escalate if invoice amount OR variance exceeds either limit</text>
+<line x1="285" y1="318" x2="285" y2="334" stroke="#888780" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<!-- DECISION 2 -->
+<polygon points="285,334 365,358 285,382 205,358" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="285" y="358" text-anchor="middle" font-size="11" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">RM authority met?</text>
+<line x1="365" y1="358" x2="390" y2="358" stroke="#27500A" stroke-width="1.2" marker-end="url(#ar2)"/>
+<text x="377" y="350" text-anchor="middle" font-size="10" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes</text>
+<rect x="390" y="340" width="272" height="36" rx="6" fill="#EAF3DE" stroke="#639922" stroke-width="0.8"/>
+<text x="526" y="358" text-anchor="middle" font-size="11" font-weight="700" fill="#173404" font-family="Arial,sans-serif" dominant-baseline="central">AP Manager → Approved for Payment</text>
+<line x1="285" y1="382" x2="285" y2="398" stroke="#888780" stroke-width="1.2" marker-end="url(#ar2)"/>
+<text x="298" y="393" font-size="10" fill="#666" font-family="Arial,sans-serif">No / exceeds $7,500 or variance ↓</text>
+
+<!-- STEP 3: AP MANAGER -->
+<rect x="100" y="398" width="370" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.2"/>
+<text x="285" y="420" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C" font-family="Arial,sans-serif" dominant-baseline="central">Step 3 — AP Manager: Review &amp; Code</text>
+<line x1="285" y1="442" x2="285" y2="458" stroke="#888780" stroke-width="1.2" marker-end="url(#ar2)"/>
+
+<!-- STEP 4: EXEC -->
+<rect x="100" y="458" width="370" height="30" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.2"/>
+<text x="285" y="473" text-anchor="middle" font-size="13" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif" dominant-baseline="central">Step 4 — Exec: Final Approval (no threshold)</text>
+</svg>
+</div>
+
+<!-- ═══════════════ CAPEX INVOICES ═══════════════ -->
+<div id="capex" class="panel">
+<div class="panel-label">CapEx Invoices — Full Chain Required for All Amounts</div>
+<svg viewBox="0 0 680 420">
+<defs><marker id="ar3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<rect x="190" y="10" width="300" height="36" rx="18" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="340" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">CapEx invoice submitted</text>
+<line x1="340" y1="46" x2="340" y2="62" stroke="#888780" stroke-width="1.2" marker-end="url(#ar3)"/>
+
+<rect x="170" y="62" width="340" height="42" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="340" y="83" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif" dominant-baseline="central">Step 1 — SOM: Review &amp; Approve</text>
+<line x1="340" y1="104" x2="340" y2="120" stroke="#888780" stroke-width="1.2" marker-end="url(#ar3)"/>
+
+<rect x="170" y="120" width="340" height="42" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="340" y="141" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif" dominant-baseline="central">Step 2 — PSM: Review &amp; Approve</text>
+<line x1="340" y1="162" x2="340" y2="178" stroke="#888780" stroke-width="1.2" marker-end="url(#ar3)"/>
+
+<rect x="170" y="178" width="340" height="42" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="340" y="199" text-anchor="middle" font-size="13" font-weight="700" fill="#085041" font-family="Arial,sans-serif" dominant-baseline="central">Step 3 — RM: Review &amp; Approve</text>
+<line x1="340" y1="220" x2="340" y2="236" stroke="#888780" stroke-width="1.2" marker-end="url(#ar3)"/>
+
+<rect x="170" y="236" width="340" height="42" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.2"/>
+<text x="340" y="257" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C" font-family="Arial,sans-serif" dominant-baseline="central">Step 4 — AP Manager: Review &amp; Code</text>
+<line x1="340" y1="278" x2="340" y2="294" stroke="#888780" stroke-width="1.2" marker-end="url(#ar3)"/>
+
+<rect x="170" y="294" width="340" height="50" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.2"/>
+<text x="340" y="313" text-anchor="middle" font-size="13" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif">Step 5 — Brian: Final Approval</text>
+<text x="340" y="333" text-anchor="middle" font-size="11" fill="#993C1D" font-family="Arial,sans-serif">All CapEx invoices — no dollar threshold</text>
+
+<rect x="80" y="368" width="520" height="38" rx="6" fill="#FEF9E7" stroke="#F39C12" stroke-width="0.8"/>
+<text x="340" y="387" text-anchor="middle" font-size="11" fill="#7D5100" font-family="Arial,sans-serif" dominant-baseline="central">All 5 steps are required for every CapEx invoice. No individual level may grant final approval.</text>
+</svg>
+</div>
+
+<!-- ═══════════════ PURCHASE ORDERS ═══════════════ -->
+<div id="po" class="panel">
+<div class="panel-label">Purchase Orders — Sequential Approval Required at Each Tier</div>
+<svg viewBox="0 0 680 576">
+<defs><marker id="ar4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<!-- COLUMN HEADERS -->
+<rect x="20" y="10" width="290" height="28" rx="14" fill="#D6E4F0" stroke="#2E75B6" stroke-width="0.8"/>
+<text x="165" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#1F4E79" font-family="Arial,sans-serif" dominant-baseline="central">COE Purchase Orders</text>
+
+<rect x="370" y="10" width="290" height="28" rx="14" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.8"/>
+<text x="515" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#412402" font-family="Arial,sans-serif" dominant-baseline="central">CapEx Purchase Orders</text>
+
+<!-- COE: SOM -->
+<line x1="165" y1="38" x2="165" y2="52" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+<rect x="20" y="52" width="290" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="165" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 1 — SOM: Review &amp; Approve</text>
+<text x="165" y="86" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $2,500</text>
+<text x="165" y="100" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">If ≤ $2,500 → COE PO approved</text>
+<line x1="165" y1="108" x2="165" y2="124" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+<!-- COE: D1 -->
+<polygon points="165,124 235,144 165,164 95,144" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="165" y="144" text-anchor="middle" font-size="10" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">SOM authority met? (≤ $2.5K)</text>
+<line x1="235" y1="144" x2="316" y2="144" stroke="#27500A" stroke-width="1" marker-end="url(#ar4)"/>
+<text x="274" y="136" text-anchor="middle" font-size="9" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes → Approved</text>
+<line x1="165" y1="164" x2="165" y2="178" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+<text x="178" y="173" font-size="9" fill="#666" font-family="Arial,sans-serif">No ↓</text>
+
+<!-- COE: PSM -->
+<rect x="20" y="178" width="290" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="165" y="196" text-anchor="middle" font-size="12" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 2 — PSM: Review &amp; Approve</text>
+<text x="165" y="212" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $5,000</text>
+<text x="165" y="226" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">If ≤ $5,000 → COE PO approved</text>
+<line x1="165" y1="234" x2="165" y2="250" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+<!-- COE: D2 -->
+<polygon points="165,250 235,270 165,290 95,270" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="165" y="270" text-anchor="middle" font-size="10" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">PSM authority met? (≤ $5K)</text>
+<line x1="235" y1="270" x2="316" y2="270" stroke="#27500A" stroke-width="1" marker-end="url(#ar4)"/>
+<text x="274" y="262" text-anchor="middle" font-size="9" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes → Approved</text>
+<line x1="165" y1="290" x2="165" y2="304" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+<text x="178" y="299" font-size="9" fill="#666" font-family="Arial,sans-serif">No ↓</text>
+
+<!-- COE: RM -->
+<rect x="20" y="304" width="290" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
+<text x="165" y="322" text-anchor="middle" font-size="12" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Step 3 — RM: Review &amp; Approve</text>
+<text x="165" y="338" text-anchor="middle" font-size="11" fill="#0F6E56" font-family="Arial,sans-serif">Final authority: ≤ $10,000</text>
+<text x="165" y="352" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif" font-style="italic">If ≤ $10,000 → COE PO approved</text>
+<line x1="165" y1="360" x2="165" y2="376" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+<!-- COE: D3 -->
+<polygon points="165,376 235,396 165,416 95,396" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="165" y="396" text-anchor="middle" font-size="10" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">RM authority met? (≤ $10K)</text>
+<line x1="235" y1="396" x2="316" y2="396" stroke="#27500A" stroke-width="1" marker-end="url(#ar4)"/>
+<text x="274" y="388" text-anchor="middle" font-size="9" font-weight="700" fill="#27500A" font-family="Arial,sans-serif">Yes → Approved</text>
+<line x1="165" y1="416" x2="165" y2="432" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+<text x="178" y="427" font-size="9" fill="#666" font-family="Arial,sans-serif">No / &gt; $10K ↓</text>
+
+<!-- COE: EXEC -->
+<rect x="20" y="432" width="290" height="44" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.2"/>
+<text x="165" y="450" text-anchor="middle" font-size="12" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif">Step 4 — Exec: Final Approval</text>
+<text x="165" y="466" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Arial,sans-serif">All COE POs exceeding $10,000</text>
+
+<!-- ─────── CapEx PO Column ─────── -->
+<line x1="515" y1="38" x2="515" y2="52" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+<rect x="370" y="52" width="290" height="42" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.2"/>
+<text x="515" y="73" text-anchor="middle" font-size="12" font-weight="700" fill="#412402" font-family="Arial,sans-serif" dominant-baseline="central">Step 1 — SOM: Review &amp; Approve</text>
+<line x1="515" y1="94" x2="515" y2="110" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+<rect x="370" y="110" width="290" height="42" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.2"/>
+<text x="515" y="131" text-anchor="middle" font-size="12" font-weight="700" fill="#412402" font-family="Arial,sans-serif" dominant-baseline="central">Step 2 — PSM: Review &amp; Approve</text>
+<line x1="515" y1="152" x2="515" y2="168" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+<rect x="370" y="168" width="290" height="42" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.2"/>
+<text x="515" y="189" text-anchor="middle" font-size="12" font-weight="700" fill="#412402" font-family="Arial,sans-serif" dominant-baseline="central">Step 3 — RM: Review &amp; Approve</text>
+<line x1="515" y1="210" x2="515" y2="226" stroke="#888780" stroke-width="1.2" marker-end="url(#ar4)"/>
+
+<rect x="370" y="226" width="290" height="50" rx="8" fill="#FAECE7" stroke="#D85A30" stroke-width="1.2"/>
+<text x="515" y="246" text-anchor="middle" font-size="12" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif">Step 4 — Brian: Final Approval</text>
+<text x="515" y="264" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Arial,sans-serif">All CapEx POs — no dollar threshold</text>
+
+<!-- HDS Note -->
+<rect x="370" y="298" width="290" height="62" rx="8" fill="#E6F1FB" stroke="#2E75B6" stroke-width="0.8"/>
+<text x="515" y="317" text-anchor="middle" font-size="12" font-weight="700" fill="#1F4E79" font-family="Arial,sans-serif">HDS / Home Depot Supply Orders</text>
+<text x="515" y="337" text-anchor="middle" font-size="11" fill="#185FA5" font-family="Arial,sans-serif">Must use system-generated catalog PO only.</text>
+<text x="515" y="353" text-anchor="middle" font-size="10" fill="#555" font-family="Arial,sans-serif">No orders placed directly with HD permitted.</text>
+
+<!-- Divider -->
+<line x1="340" y1="38" x2="340" y2="490" stroke="#E0E0E0" stroke-width="0.5" stroke-dasharray="4 3"/>
+</svg>
+</div>
+
+<!-- ═══════════════ CONTRACTS ═══════════════ -->
+<div id="contract" class="panel">
+<div class="panel-label">Contract Approval Routing</div>
+<svg viewBox="0 0 680 406">
+<defs><marker id="ar5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+
+<rect x="200" y="10" width="280" height="36" rx="18" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="340" y="28" text-anchor="middle" font-size="13" font-weight="700" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">Contract required</text>
+<line x1="340" y1="46" x2="340" y2="66" stroke="#888780" stroke-width="1.2" marker-end="url(#ar5)"/>
+
+<polygon points="340,66 440,100 340,134 240,100" fill="#F8F7F5" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="340" y="96" text-anchor="middle" font-size="12" fill="#2C2C2A" font-family="Arial,sans-serif" dominant-baseline="central">Contract scope?</text>
+<text x="340" y="112" text-anchor="middle" font-size="10" fill="#666" font-family="Arial,sans-serif" dominant-baseline="central">Determine type before drafting</text>
+
+<!-- Left: Site-level -->
+<line x1="240" y1="100" x2="78" y2="100" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+<text x="159" y="92" text-anchor="middle" font-size="9" fill="#555" font-family="Arial,sans-serif">Site-level services</text>
+<rect x="10" y="80" width="68" height="40" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.8"/>
+<text x="44" y="97" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Arial,sans-serif" dominant-baseline="central">PSM or</text>
+<text x="44" y="111" text-anchor="middle" font-size="10" font-weight="700" fill="#085041" font-family="Arial,sans-serif" dominant-baseline="central">SOM</text>
+
+<!-- Right: Master / >$50K -->
+<line x1="440" y1="100" x2="582" y2="100" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+<text x="511" y="92" text-anchor="middle" font-size="9" fill="#555" font-family="Arial,sans-serif">Portfolio / &gt; $50,000</text>
+<rect x="582" y="80" width="88" height="40" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.8"/>
+<text x="626" y="97" text-anchor="middle" font-size="10" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif" dominant-baseline="central">POC with</text>
+<text x="626" y="111" text-anchor="middle" font-size="10" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif" dominant-baseline="central">Vendor</text>
+
+<!-- Center: Capital Projects -->
+<line x1="340" y1="134" x2="340" y2="158" stroke="#888780" stroke-width="1.2" marker-end="url(#ar5)"/>
+<text x="356" y="150" font-size="9" fill="#555" font-family="Arial,sans-serif">Capital / Redevelopment</text>
+<rect x="220" y="158" width="240" height="38" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.8"/>
+<text x="340" y="177" text-anchor="middle" font-size="11" font-weight="700" fill="#412402" font-family="Arial,sans-serif" dominant-baseline="central">Project Manager drafts contract</text>
+
+<!-- All paths converge to AP Manager -->
+<line x1="44" y1="120" x2="44" y2="258" stroke="#888780" stroke-width="1"/>
+<line x1="44" y1="258" x2="196" y2="258" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+<line x1="340" y1="196" x2="340" y2="258" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+<line x1="626" y1="120" x2="626" y2="258" stroke="#888780" stroke-width="1"/>
+<line x1="626" y1="258" x2="484" y2="258" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+
+<rect x="196" y="236" width="288" height="44" rx="8" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1.2"/>
+<text x="340" y="254" text-anchor="middle" font-size="13" font-weight="700" fill="#26215C" font-family="Arial,sans-serif">AP Manager</text>
+<text x="340" y="270" text-anchor="middle" font-size="10" fill="#534AB7" font-family="Arial,sans-serif">Reviews contract, confirms COI, sends for signature</text>
+
+<!-- Three final signatories -->
+<line x1="274" y1="280" x2="112" y2="320" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+<line x1="340" y1="280" x2="340" y2="320" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+<line x1="406" y1="280" x2="566" y2="320" stroke="#888780" stroke-width="1" marker-end="url(#ar5)"/>
+
+<rect x="18" y="320" width="188" height="44" rx="6" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.8"/>
+<text x="112" y="338" text-anchor="middle" font-size="12" font-weight="700" fill="#085041" font-family="Arial,sans-serif">Elmer</text>
+<text x="112" y="354" text-anchor="middle" font-size="10" fill="#0F6E56" font-family="Arial,sans-serif">Site-level contracts</text>
+
+<rect x="246" y="320" width="188" height="44" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.8"/>
+<text x="340" y="338" text-anchor="middle" font-size="12" font-weight="700" fill="#412402" font-family="Arial,sans-serif">Brian</text>
+<text x="340" y="354" text-anchor="middle" font-size="10" fill="#854F0B" font-family="Arial,sans-serif">Capital / Redevelopment</text>
+
+<rect x="474" y="320" width="188" height="44" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.8"/>
+<text x="568" y="338" text-anchor="middle" font-size="12" font-weight="700" fill="#4A1B0C" font-family="Arial,sans-serif">Matt</text>
+<text x="568" y="354" text-anchor="middle" font-size="10" fill="#993C1D" font-family="Arial,sans-serif">Portfolio-wide / &gt; $50,000</text>
+
+<text x="340" y="392" text-anchor="middle" font-size="10" fill="#999" font-family="Arial,sans-serif" font-style="italic">All contracts must include: scope of work, insurance requirements, payment terms, and a change order process</text>
+</svg>
+</div>
+
+<div class="legend">
+  <div class="ld"><div class="lc" style="background:#E1F5EE;border:1px solid #1D9E75"></div>Site-level approver (SOM/PSM/RM)</div>
+  <div class="ld"><div class="lc" style="background:#EEEDFE;border:1px solid #7F77DD"></div>AP Manager</div>
+  <div class="ld"><div class="lc" style="background:#FAECE7;border:1px solid #D85A30"></div>Executive / Final Approval</div>
+  <div class="ld"><div class="lc" style="background:#EAF3DE;border:1px solid #639922"></div>Approved for Payment</div>
+  <div class="ld"><div class="lc" style="background:#F8F7F5;border:1px solid #B4B2A9"></div>Decision point</div>
+</div>
+
+</div>
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
